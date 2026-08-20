@@ -1,0 +1,57 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+## NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio
+*. Visual Studio 2015 cache/options directory
+.vs/
+*.[Cc]ache
+!*.[Cc]ache/
+
+## Configuration with secrets
+appsettings.Development.json
+appsettings.*.json
+*.env
+.env
+.env.local
+.env.*.local
+
+## Node (for future frontend)
+node_modules/
+dist/
+
+## OS
+.DS_Store
+Thumbs.db
