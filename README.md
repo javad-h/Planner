@@ -9,10 +9,9 @@ Planner با تمرکز روی تجربه‌ای ساده و دلنشین طرا
 صفحه اصلی Planner با تمرکز روی فعالیت‌های امروز طراحی شده است؛
 تعهدات امروز، میزان پیشرفت و روزهای برنامه را در یک نمای ساده و فارسی نمایش می‌دهد.
 
-### Light Mode
+<h2>Today</h2>
 
-![Planner Today - Light Mode](docs/demo/today-light.png)
-
-### Dark Mode
-
-![Planner Today - Dark Mode](docs/demo/today-dark.png)
+<p align="center">
+  <img src="docs/demo/today-light.png" alt="Planner Today - Light Mode" width="48%" />
+  <img src="docs/demo/today-dark.png" alt="Planner Today - Dark Mode" width="48%" />
+</p>
