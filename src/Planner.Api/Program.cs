@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Planner.Api.Middleware;
 using Planner.Application.Interfaces;
+using Planner.Application.Services;
 using Planner.Infrastructure.Data;
 using Planner.Infrastructure.Repositories;
 
@@ -26,6 +27,8 @@ builder.Services.AddDbContext<PlannerDbContext>(options =>
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<ICommitmentRepository, CommitmentRepository>();
 builder.Services.AddScoped<IDailyRecordRepository, DailyRecordRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICommitmentService, CommitmentService>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();

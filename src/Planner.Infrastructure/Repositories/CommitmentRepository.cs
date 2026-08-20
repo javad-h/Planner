@@ -32,13 +32,11 @@ public class CommitmentRepository : ICommitmentRepository
     public async Task AddAsync(Commitment commitment)
     {
         await _context.Commitments.AddAsync(commitment);
-        await _context.SaveChangesAsync();
     }
 
     public async Task AddRangeAsync(IEnumerable<Commitment> commitments)
     {
         await _context.Commitments.AddRangeAsync(commitments);
-        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(Commitment commitment)
