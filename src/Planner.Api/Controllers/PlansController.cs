@@ -15,15 +15,18 @@ public class PlansController : ControllerBase
     private readonly IPlanRepository _planRepository;
     private readonly ICommitmentRepository _commitmentRepository;
     private readonly IDailyRecordRepository _dailyRecordRepository;
+    private readonly ICommitmentService _commitmentService;
 
     public PlansController(
         IPlanRepository planRepository,
         ICommitmentRepository commitmentRepository,
-        IDailyRecordRepository dailyRecordRepository)
+        IDailyRecordRepository dailyRecordRepository,
+        ICommitmentService commitmentService)
     {
         _planRepository = planRepository;
         _commitmentRepository = commitmentRepository;
         _dailyRecordRepository = dailyRecordRepository;
+        _commitmentService = commitmentService;
     }
 
     [HttpPost]
@@ -79,20 +82,18 @@ public class PlansController : ControllerBase
     [HttpPost("{planId:guid}/commitments")]
     public async Task<ActionResult<CommitmentDto>> AddCommitment(Guid planId, [FromBody] CreateCommitmentRequest request)
     {
-        var plan = await _planRepository.GetByIdAsync(planId);
-        if (plan == null)
+        try
+        {
+            var commitmentDto = await _commitmentService.AddCommitmentAsync(planId, request);
+            return CreatedAtAction(
+                nameof(GetPlan),
+                new { id = planId },
+                commitmentDto);
+        }
+        catch (KeyNotFoundException)
+        {
             return NotFound();
-
-        var commitment = Commitment.Create(planId, request.Title, request.Type, request.TargetValue, request.Unit);
-        await _commitmentRepository.AddAsync(commitment);
-
-        var dailyRecords = commitment.GenerateDailyRecords(plan.StartDate, plan.EndDate);
-        await _dailyRecordRepository.AddRangeAsync(dailyRecords);
-
-        return CreatedAtAction(
-            nameof(GetPlan),
-            new { id = planId },
-            MapToDto(commitment));
+        }
     }
 
     [HttpPut("commitments/{id:guid}")]

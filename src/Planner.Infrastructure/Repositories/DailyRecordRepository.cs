@@ -59,13 +59,11 @@ public class DailyRecordRepository : IDailyRecordRepository
     public async Task AddAsync(DailyRecord dailyRecord)
     {
         await _context.DailyRecords.AddAsync(dailyRecord);
-        await _context.SaveChangesAsync();
     }
 
     public async Task AddRangeAsync(IEnumerable<DailyRecord> dailyRecords)
     {
         await _context.DailyRecords.AddRangeAsync(dailyRecords);
-        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(DailyRecord dailyRecord)
